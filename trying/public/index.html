@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<title>AdminHub</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">YAMAY</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">CLIENTS</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">RENDEZ-VOUS</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">CALENDRIEZ</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">SEARCH</span>
+				</a>
+			</li>
+			<!-- <li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Team</span>
+				</a>
+			</li> -->
+		</ul>
+		<ul class="side-menu">
+			<!-- <li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li> -->
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>YAMAY</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Clients</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3>10500</h3>
+						<p>Consultations</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>2834</h3>
+						<p>Nombre De Clients</p>
+					</span>
+				</li>
+				
+			</ul>
+
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Clients</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>Nom</th>
+								<th>PRENOM</th>
+								<th>CIN</th>
+								<th>Email</th>
+								<th>DDN</th>
+								<th>F/H</th>
+								<th>NTel</th>
+								<th>ACTIONS</th>
+							</tr>
+						</thead>
+						<tbody id="patient-table">
+							
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</main>
+		<!-- MAIN -->
+		<div class="ajouterPatient">
+			<form id="add-patient-form">
+				<div class="form-group">
+					<label for="nom">Nom:</label>
+					<input type="text" id="nom" name="nom" placeholder="Entrer nom" required>
+				</div>
+				<div class="form-group">
+					<label for="prenom">Prenom:</label>
+					<input type="text" id="prenom" name="prenom" placeholder="Entrer prenom " required>
+				</div>
+				<div class="form-group">
+					<label for="cin">CIN:</label>
+					<input type="text" id="cin" name="cin" placeholder="Entrer cin" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" placeholder="Enter email address" required>
+				</div>
+				<div class="form-group">
+					<label for="ddn">DDN:</label>
+					<input type="date" id="ddn" name="ddn" placeholder="Entrer la DDN" required>
+				</div>
+				<div class="form-group">
+					<label for="fh">F/H:</label>
+					<input type="text" id="fh" name="fh" placeholder="Femme(F) ou Homme(H)" required>
+				</div>
+				<div class="form-group">
+					<label for="ntel">Ntel:</label>
+					<input type="text" id="ntel" name="ntel" placeholder="Entrer le Ntel">
+				</div>
+				<button type="submit">Ajouter Patient</button>
+			</form>
+			
+		</div>
+		
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="script.js"></script>
+	<script src="app.js"></script>
+
+</body>
+</html>
