@@ -2,14 +2,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const patientTable = document.getElementById('patient-table');
     const addPatientForm = document.getElementById('add-patient-form');
-    
+    const searchBox = document.getElementById('search-box');
+    const searchBtn = document.querySelector('.search-btn');
+    let Searchmot ;
 
+
+    searchBtn.addEventListener('click', () =>{
+        Searchmot = searchBox.value;
+        fetchpatients();
+    });
+    
     // Fetch all patients and display them in the table
     async function fetchpatients() {
         try {
-            const response = await fetch('/api/patients');
+            const response = await fetch(`/api/patients/search/${Searchmot}`);
             if (!response.ok) throw new Error('Failed to fetch patients');
-
+    
             const patients = await response.json();
             renderpatientTable(patients);
         } catch (error) {
@@ -149,6 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
     // Initial load of patient data
-    fetchpatients();
 });

@@ -8,7 +8,7 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- Lien pour Font Awesome -->
     <script src="https://kit.fontawesome.com/69e4fa9088.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="search.css">
 
 	<title>Clients</title>
 </head>
@@ -22,8 +22,8 @@
 			<span class="text">YAMAY</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
-				<a href="#">
+			<li >
+				<a href="index.html">
 					<i class='bx bxs-user-account'></i>
 					<span class="text">CLIENTS</span>
 				</a>
@@ -40,7 +40,7 @@
 					<span class="text">CALENDRIER</span>
 				</a>
 			</li>
-			<li>
+			<li class="active" >
 				<a href="search.html">
 					<i class='bx bx-search' ></i>
 					<span class="text">SEARCH</span>
@@ -78,12 +78,12 @@
 		<nav>
 			<i class='bx bx-menu' ></i>
 			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
+			
+				<div class="form-input" style="visibility: hidden;">
 					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+					<button ><i class='bx bx-search' ></i></button>
 				</div>
-			</form>
+			
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">
@@ -91,7 +91,7 @@
 				<span class="num">8</span>
 			</a>
 			<a href="#" class="profile">
-				<img src="img/people.png">
+				<i class="fas fa-user-md"></i>
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -107,31 +107,18 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="#">Clients</a>
+							<a class="active" href="#">Search</a>
 						</li>
 					</ul>
 				</div>
 				
 			</div>
-
-			<ul class="box-info">
-				<li>
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">
-						<h3>10500</h3>
-						<p>Consultations</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-group' ></i>
-					<span class="text">
-						<h3>2834</h3>
-						<p>Nombre De Clients</p>
-					</span>
-				</li>
-				
-			</ul>
-
+			<div class="form">
+				<div class="form-input">
+					<input type="search" id="search-box" placeholder="Search...">
+					<button class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</div>
 
 			<div class="table-data">
 				<div class="order">
@@ -162,8 +149,6 @@
 			</div>
 		</main>
 		<!-- MAIN -->
-
-		
 	</section>
 	<!-- CONTENT -->
 
@@ -224,9 +209,8 @@
 		</form>
 	</div>
 	
-	<script src="script2.js"></script>
+
 	<script src="script.js"></script>
-	<script src="app.js"></script>
-	
+	<script src="appSearch.js"></script>
 </body>
 </html>

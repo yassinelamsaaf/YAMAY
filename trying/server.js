@@ -31,12 +31,45 @@ app.get('/api/patients', async (req, res) => {
     try {
         const result = await pool.query("SELECT id, nom, prenom, cin, TO_CHAR(ddn, 'MM-DD-YYYY') AS ddn, fh, ntel, email FROM public.patients;");
         res.json(result.rows); 
-        console.log(result.rows)
+        // console.log(result.rows)
     } catch (error) {
         console.error('Error fetching patients:', error);
         res.status(500).json({ error: 'Error fetching patients' });
     }
 });
+
+//Search patients by name
+app.get('/api/patients/search/:searchBoxValue', async (req, res) => {
+    const { searchBoxValue } = req.params; // Extract the search term
+
+    try {
+        const result = await pool.query(
+            `
+            SELECT 
+                id, 
+                nom, 
+                prenom, 
+                cin, 
+                TO_CHAR(ddn, 'MM-DD-YYYY') AS ddn, 
+                fh, 
+                ntel, 
+                email 
+            FROM public.patients
+            WHERE 
+                nom ILIKE $1 
+                OR prenom ILIKE $1 
+                OR cin ILIKE $1 
+                OR CAST(id AS TEXT) = $2
+        `, [`%${searchBoxValue}%`, searchBoxValue]);
+
+        res.json(result.rows); // Send the search results as the response
+    } catch (error) {
+        console.error('Error fetching patients:', error);
+        res.status(500).json({ error: 'Error fetching patients' });
+    }
+});
+
+
 
 // Add a new patient
 app.post('/api/patients', async (req, res) => {
@@ -89,10 +122,18 @@ app.delete('/api/patients/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        const result = await pool.query('DELETE FROM patients WHERE id = $1', [id]);
+        const result = await pool.query("DELETE FROM patients WHERE id = $1;", [id]);
 
         if (result.rowCount === 0) {
             return res.status(404).json({ error: 'patient not found' });
+        }
+
+        const countresults = await pool.query("SELECT count(*) AS count FROM patients;");
+        const count = parseInt(countresults.rows[0].count,10);
+
+        if (count === 0) {
+            // All patients deleted, reset the sequence
+            await pool.query('ALTER SEQUENCE "PATIENT_id_seq" RESTART WITH 1;');
         }
 
         res.status(204).send(); // No content
@@ -112,6 +153,8 @@ app.use((req, res) => {
 
 
 //TABLE CONSULTATION
+
+ 
 //TABLE CONSULTATION
 
 // Start the server
