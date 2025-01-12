@@ -450,12 +450,6 @@ body {
 #content main .table-data .order table td {
 	padding: 16px 0;
 }
-#content main .table-data .order table tr td:first-child {
-	display: flex;
-	align-items: center;
-	grid-gap: 12px;
-	padding-left: 6px;
-}
 #content main .table-data .order table td img {
 	width: 36px;
 	height: 36px;
@@ -509,7 +503,183 @@ body {
 }
 /* MAIN */
 /* CONTENT */
+/*POP-UP CLIENT*/
+.clientInfo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    position: absolute;
+	padding: 4%;
+    background-color: var(--grey);
+	z-index: 10000;
+	top: 50%;
+	left: 50%;
+	translate:-50% -50% ;
+	box-shadow: 2px 2px 40px #06071425;
+	border-radius: 20px;
+	border:3px solid gainsboro;
+	visibility: hidden;
+    
 
+}
+.form-group{
+	margin-bottom: 16px;
+	margin-left: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.doubleform-group{
+	display: flex;
+	flex-direction: column;
+
+}
+.tripleform-group{
+	display: flex;
+	margin-bottom: 4%;
+	justify-content: space-between;
+}
+.form-group label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+.form-group input {
+    width: 100%;
+    padding: 3%;
+    font-size: 1rem;
+    border: 2px solid var(--light-blue);
+    border-radius: 8px;
+   	transition: border-color 0.3s ease;
+}
+.close{
+	position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.clientInfo button[type="submit"] {
+    width: 50%;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color, #007BFF); /* Use your primary color */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+/*PATIENT INFO + CONSULTATION RENDEZVOUS*/
+.patient-detail{
+	visibility: hidden;
+	max-height: 80%;
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+    position: absolute;
+	padding: 5%;
+    background-color: var(--grey);
+	z-index: 10000;
+	top: 50%;
+	left: 50%;
+	translate:-50% -50% ;
+	box-shadow: 2px 2px 40px #06071425;
+	border-radius: 2px;
+	border:3px solid gainsboro;
+	scrollbar-width: none;
+	
+}
+/* .patient-detail::-webkit-scrollbar {
+	display: none;  For Chrome, Safari, and Edge 
+} */
+.patient-detail .patientinfoprincipale{
+	font-family: 'Courier New', Courier, monospace;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10%;
+}
+.patient-detail img{
+
+	width: 150px;
+	margin-right: 10px;
+
+}
+.patient-detail .patientinfoprincipale h3{
+   
+    margin-bottom: 2px;
+}
+.patient-detail .patientinfoprincipale p{
+	margin-bottom: 10px;
+}
+.patient-detail table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+}
+	
+.patient-detail th,.patient-detail td {
+	padding: 8px 12px;
+	text-align: center;
+	border: 1px solid #ddd;
+}
+	
+.patient-detail th {
+	background-color: #f2f2f2;
+}
+.patient-detail tr:hover {
+	background-color: #f1f1f1;
+}
+.close button {
+	background: none;
+	border: none;
+	font-size: 20px;
+	color: #333;
+	cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .close button:hover {
+	color: red;
+  }
+  
+/*Consultation*/
+.consultationInfo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    position: absolute;
+	padding: 4%;
+    background-color: var(--grey);
+	z-index: 10000;
+	top: 40%;
+	left: 70%;
+	translate:-50% -50% ;
+	box-shadow: 2px 2px 40px #06071425;
+	border-radius: 20px;
+	border:3px solid gainsboro;
+	visibility: hidden;
+    
+
+}
+.consultationInfo button[type="submit"] {
+    padding: 5px 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--blue); /* Use your primary color */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 
 

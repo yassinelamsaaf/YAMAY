@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve frontend files
 // Routes
 
 
-//TABLE PATIENTS//
+//__________________TABLE PATIENTS______________________//
 
 
 // Get all patients
@@ -148,11 +148,104 @@ app.use((req, res) => {
     res.status(404).send('Endpoint not found');
 });
 
-//TABLE PATIENTS//
+//__________________TABLE PATIENTS______________________//
+
+
+//__________________TABLE CONSULTATION__________________//
+
+// Get all consultations
+app.get('/api/consulations/:idpatient', async (req, res) => {
+    const { idpatient } = req.params; // Extract the patient ID
+    try {
+        const result = await pool.query(`SELECT id, nom,TO_CHAR(date, 'MM-DD-YYYY') AS date, mantant FROM public.consultations WHERE CAST(idpatient AS TEXT) = $1 ;`,[idpatient]);
+        res.json(result.rows); 
+        // console.log(result.rows)
+    } catch (error) {
+        console.error('Error fetching consultations:', error);
+        res.status(500).json({ error: 'Error fetching consultations' });
+    }
+});
 
 
 
-//TABLE CONSULTATION
+// Add a new patient
+app.post('/api/consultations', async (req, res) => {
+    const {date,mantant } = req.body;
+
+    if (!nom || !prenom || !cin ) {
+        return res.status(400).json({ error: 'Name and email are required' });
+    }
+
+    try {
+        const result = await pool.query(
+            'INSERT INTO public.consultations(date,mantant) VALUES ($1, $2) RETURNING *',
+            [date,mantant]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error adding consultation:', error);
+        res.status(500).json({ error: 'Error adding consultation' });
+    }
+});
+
+// Update a patient
+app.put('/api/consultations/:id', async (req, res) => {
+    const { id } = req.params;
+    const { date,mantant } = req.body;
+
+    if (!date || !mantant) {
+        return res.status(400).json({ error: 'date et mantant are required' });
+    }
+
+    try {
+        const result = await pool.query(
+            'UPDATE consultations SET  date = $1, mantant = $2 WHERE id = $3 RETURNING *',
+            [date,mantant,id]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: 'consultation not found' });
+        }
+
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error updating consultation:', error);
+        res.status(500).json({ error: 'Error updating consultation' });
+    }
+});
+
+// Delete a patient
+app.delete('/api/patients/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await pool.query("DELETE FROM consultations WHERE id = $1;", [id]);
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: 'consultation not found' });
+        }
+
+        const countresults = await pool.query("SELECT count(*) AS count FROM consultations;");
+        const count = parseInt(countresults.rows[0].count,10);
+
+        if (count === 0) {
+            // All patients deleted, reset the sequence
+            await pool.query('ALTER SEQUENCE "consultations_id_seq" RESTART WITH 1;');
+        }
+
+        res.status(204).send(); // No content
+    } catch (error) {
+        console.error('Error deleting patient:', error);
+        res.status(500).json({ error: 'Error deleting patient' });
+    }
+});
+
+
+
+
+
+//__________________TABLE CONSULTATION__________________//
+
 
  
 //TABLE CONSULTATION

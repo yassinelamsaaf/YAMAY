@@ -5,8 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBox = document.getElementById('search-box');
     const searchBtn = document.querySelector('.search-btn');
     let Searchmot ;
-
-
+    
+    searchBox.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {  // Check if the Enter key was pressed
+            Searchmot = searchBox.value;
+            fetchpatients();
+        }
+    });
     searchBtn.addEventListener('click', () =>{
         Searchmot = searchBox.value;
         fetchpatients();
@@ -31,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         patientTable.innerHTML = ''; // Clear the table before adding new rows
         patients.forEach(patient => {
             const row = document.createElement('tr');
+            row.className = 'patientEnrg';
+            row.dataset.patient = JSON.stringify(patient); // Store patient data in the dataset
 
             row.innerHTML = `
                 <td>${patient.id}</td>

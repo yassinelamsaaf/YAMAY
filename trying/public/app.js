@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         patientTable.innerHTML = ''; // Clear the table before adding new rows
         patients.forEach(patient => {
             const row = document.createElement('tr');
+            row.className = 'patientEnrg';
+            row.dataset.patient = JSON.stringify(patient); // Store patient data in the dataset
 
             row.innerHTML = `
                 <td>${patient.id}</td>

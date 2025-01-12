@@ -170,7 +170,7 @@
 	<!-- Client POP-UP -->
 
 	<div class="clientInfo">
-		<div class="close"><button>X</button></div>
+		<div class="close1 close"><button>X</button></div>
 		<form id="add-patient-form">
 			<div class="tripleform-group">
 				<img src="/trying/public/img/people.png" style="width: 100%;" alt="">
@@ -224,9 +224,161 @@
 		</form>
 	</div>
 	
+	<!-- patient details -->
+	<div class="patient-detail">
+		<div class="close2 close"><button>X</button></div>
+		<div class="patientinfoprincipale">
+			<img src="/trying/public/img/client.svg" alt="">
+			<div>
+				<h3 id="patient-nom">NOM</h3>
+				<p id="patient-prenom">PRENOM</p>
+				<p id="patient-cin">EE12345</p>
+				<p id="patient-ddn">10/10/2020</p>
+				<p id="patient-ntel">0655241037</p>
+			</div>
+            
+            
+		</div>
+		<!-- CONSULTATION -->
+		<div class="table-data">
+			<div class="order">
+				<div class="head">
+					<h3>Consultations :</h3>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Date</th>
+							<th>Mantant</th>
+						</tr>
+					</thead>
+					<tbody id="consultation-table">
+						<tr>
+                            <td>1</td>
+                            <td>10/10/2020</td>
+                            <td>500</td>
+                        </tr>
+						<tr>
+                            <td>2</td>
+                            <td>11/10/2020</td>
+                            <td>300</td>
+                        </tr>
+						<tr>
+                            <td>3</td>
+                            <td>12/10/2020</td>
+                            <td>700</td>
+                        </tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+		<!-- RENDEZ-VOUS -->
+		<div class="table-data">
+			<div class="order">
+				<div class="head">
+					<h3>Rendez-Vous :</h3>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Date</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody id="rendez-vous-table">
+
+						<tr>
+                            <td>1</td>
+                            <td>10/10/2020</td>
+                            <td>Consultation</td>
+                        </tr>
+						<tr>
+                            <td>2</td>
+                            <td>11/10/2020</td>
+                            <td>Rendez-vous</td>
+                        </tr>
+						<tr>
+                            <td>3</td>
+                            <td>12/10/2020</td>
+                            <td>Consultation</td>
+                        </tr>
+					</tbody>
+				</table>
+			</div>
+
+			
+		</div>
+		<!-- PAYEMENTS-->
+		<div class="table-data">
+			<div class="order">
+				<div class="head">
+					<h3>Payements :</h3>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Total</th>
+							<th>Payée</th>
+							
+						</tr>
+					</thead>
+					<tbody id="patient-table">
+						<tr>
+                            <td>1500</td>
+                            <td>10/10/2020</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>1000</td>
+                            <td>11/10/2020</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>500</td>
+                            <td>12/10/2020</td>
+                            
+                        </tr>
+						
+					</tbody>
+				</table>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<!-- consultation details -->
+<div class="consultationInfo" style="visibility: visible;">
+	<div class="close3 close"><button>X</button></div>
+	<form id="add-consultation-form">
+		<div class="tripleform-group">
+			<div class="doubleform-group">
+				<h3>CONSULTATION</h3>
+				<div class="form-group">
+					<label for="prenom">Date:</label>
+					<input type="date" id="consultation-date" name="consultation-date" required>
+				</div>
+
+			</div>
+		</div>	
+		<div class="form-group">
+			<label for="ntel">Mantant : </label>
+			<input type="text" id="mantant" name="mantant" placeholder="Entrer le Mantant">
+		</div>
+		<div class="btn">
+			<button class="submitBtn" type="submit">Ajouter Consultation</button>
+		</div>
+	</form>
+</div>
+
+
 	<script src="script2.js"></script>
 	<script src="script.js"></script>
 	<script src="app.js"></script>
+	<script src="appconsultation.js"></script>
 	
 </body>
 </html>
