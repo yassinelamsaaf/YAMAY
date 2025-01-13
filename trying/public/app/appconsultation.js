@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 let patientTable2 = document.getElementById('patient-table');
 let patientId;
+
 patientTable2.addEventListener('click', (event) => {
     console.log("hey2");
     const row = event.target.closest('.patientEnrg');
@@ -14,9 +15,25 @@ patientTable2.addEventListener('click', (event) => {
 
     }
 
+    // nbr de consultations : 
+    async function fetchconsultationsall() {
+        console.log("im in dom nbr consultation");
+        try {
+            const response = await fetch(`/api/patients/consultations/all`);
+            if (!response.ok) throw new Error('Failed to fetch consultations');
+    
+            const consultations = await response.json();
+            const nbrConsultations = document.querySelector('.nbr-consultations');
+            nbrConsultations.textContent = consultations.length;
+        } catch (error) {
+            console.error('Error fetching consultations:', error);
+            alert('Error fetching consultations. Please try again later.');
+        }
+    }
 
 
     const consultationTable = document.getElementById('consultation-table');
+    const mantantTable = document.getElementById('mantant-table');
     const addConsultationForm = document.getElementById('add-consultation-form');
     let Searchmot ;
     
@@ -31,6 +48,10 @@ patientTable2.addEventListener('click', (event) => {
     //     fetchpatients();
     // });
     
+    // Fetch all consultations mantant s
+    
+
+
     // Fetch all patients and display them in the table
     async function fetchconsultations() {
         console.log("im in dom");
@@ -62,7 +83,7 @@ patientTable2.addEventListener('click', (event) => {
                 <td class="actions">
                     <button class="update-consultation" data-id="${consultation.id}" data-date="${consultation.date}" data-mantant="${consultation.mantant}" >Update</button>
 
-                    <button class="delete-consultation" data-id="${consultation.id}"><i class='bx bxs-user-x' ></i></button>
+                    <button class="delete-consultation" data-id="${consultation.id}"><i class='bx bxs-trash'></i></button>
                 </td>
             `;
 
@@ -169,8 +190,68 @@ patientTable2.addEventListener('click', (event) => {
         });
     }
 
+    //mantant handling 
 
+    async function fetchconsultationsmantanttotal() {
+        console.log("im in dom");
+        try {
+            const response = await fetch(`/api/patients/consultations/mantant/${patientId}`);
+            if (!response.ok) throw new Error('Failed to fetch les mantants');
+    
+            const total = await response.json();
+            renderMantantTable(total);
+        } catch (error) {
+            console.error('Error fetching mantant:', error);
+            alert('Error fetching mantants. Please try again later.');
+        }
+    }
+
+    function renderMantantTable(total) {
+
+        let payee = 0;
+        console.log("rendering patient table");
+        mantantTable.innerHTML = ''; // Clear the table before adding new rows
+            const row = document.createElement('tr');
+            row.className = 'mantantEnrg';
+            row.dataset.consultation = JSON.stringify(total); // Store total data in the dataset
+            console.log(total.total);
+            row.innerHTML = `
+                <td>${total.total}</td>
+                <td class="actions">
+                    <button class="update-consultation update-mantant" data-total="${total.total}" data-date="${payee}" >Update</button>
+
+                    <button class="delete-consultation update-mantant" data-total="${total.total}"><i class='bx bxs-trash'></i></button>
+                </td>
+            `;
+
+            mantantTable.appendChild(row);
+
+        // attachMantantActionListeners(); // Attach event listeners to new buttons
+    }
+
+    // async function addMantant(total,payee) {
+    //     e.preventDefault();
+    //     idpatient = patientId;
+    //     console.log(idpatient);
+    //     // const idpatient = idpatient;
+
+    //     try {
+    //         const response = await fetch('/api/patients/consultations/mantant', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify({ idpatient,total,payee })
+    //         });
+
+    //         if (!response.ok) throw new Error('Failed to add mantant');
+
+    //         fetchconsultationsmantanttotal(); // Refresh the mantant list recupperer la reponse post (res) qui est sous form json et l'inserer
+    //     } catch (error) {
+    //         console.error('Error adding mantant:', error);
+    //         alert('Error adding mantant. Please try again.');
+    //     }
+    // };
     // Initial load of patient data
     fetchconsultations();
+    fetchconsultationsmantanttotal();
 });
 });

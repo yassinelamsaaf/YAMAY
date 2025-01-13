@@ -8,9 +8,9 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- Lien pour Font Awesome -->
     <script src="https://kit.fontawesome.com/69e4fa9088.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="search.css">
+	<link rel="stylesheet" href="./styles/search.css">
 
-	<title>Clients</title>
+	<title>YAMAY</title>
 </head>
 <body>
 
@@ -25,7 +25,7 @@
 			<li >
 				<a href="index.html">
 					<i class='bx bxs-user-account'></i>
-					<span class="text">CLIENTS</span>
+					<span class="text">PATIENTS</span>
 				</a>
 			</li>
 			<li>
@@ -75,24 +75,28 @@
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- NAVBAR -->
-		<nav>
-			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
-			
-				<div class="form-input" style="visibility: hidden;">
+		<nav style="display: flex; justify-content: space-between;">
+			<div>
+				<i class='bx bx-menu' ></i>
+				<a href="#" class="nav-link">Categories</a>
+			</div>
+			<!-- <form action="#">
+				<div class="form-input">
 					<input type="search" placeholder="Search...">
-					<button ><i class='bx bx-search' ></i></button>
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
-			
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
+			</form> -->
+			<div>
+				<input type="checkbox" id="switch-mode" hidden>
+				<label for="switch-mode" class="switch-mode"></label>
+			</div>
+			<!-- <a href="#" class="notification">
 				<i class='bx bxs-bell' ></i>
 				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<i class="fas fa-user-md"></i>
-			</a>
+			</a> -->
+			<!-- <a href="#" class="profile">
+				<img src="img/people.png">
+			</a> -->
 		</nav>
 		<!-- NAVBAR -->
 
@@ -298,11 +302,11 @@
 					<thead>
 						<tr>
 							<th>Total</th>
-							<th>Payée</th>
+							<th>Actions</th>
 							
 						</tr>
 					</thead>
-					<tbody id="patient-table">
+					<tbody id="mantant-table">
 						<tr>
                             <td>1500</td>
                             <td>10/10/2020</td>
@@ -379,11 +383,11 @@
 </div>
 
 
-	<script src="script.js"></script>
-	<script src="appSearch.js"></script>
-	<script src="script2.js"></script>
-	<script src="appconsultation.js"></script>
-	<script src="apprendezvous.js"></script>
+	<script src="./script/script.js"></script>
+	<script src="./app/appSearch.js"></script>
+	<script src="./script/script2.js"></script>
+	<script src="./app/appconsultation.js"></script>
+	<script src="./app/apprendezvous.js"></script>
 
 
 </body>

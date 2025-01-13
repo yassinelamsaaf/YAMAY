@@ -9,6 +9,7 @@ let patientTable = document.getElementById('patient-table');
 let consultationTable = document.getElementById('consultation-table');
 
 let  addBtn = document.querySelector(".bxs-user-plus");
+// let addBtn4 = document.querySelector(".plus4");
 let addConsultationBtn = document.querySelector(".plus");
 let addrendezvousBtn = document.querySelector(".plus1");
 let closeBtn = document.querySelector(".close1");
@@ -94,7 +95,12 @@ closeBtn3.addEventListener("click", () => {
 
 });
 
+// addBtn4.addEventListener("click", () =>{
+//     clientForm.style.visibility = "visible";
+// });
+
 addConsultationBtn.addEventListener("click", () =>{
+    console.log("Consultation");
     consultationForm.style.visibility = "visible";
 });
 
@@ -105,3 +111,4 @@ addrendezvousBtn.addEventListener("click", () =>{
 submitBtn.addEventListener("click", () => {
     clientForm.style.visibility = "hidden";
 })
+

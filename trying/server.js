@@ -4,7 +4,7 @@ const cors = require('cors'); // Optional: For cross-origin resource sharing
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Database Connection
 const pool = new Pool({
@@ -150,6 +150,42 @@ app.delete('/api/patients/:id', async (req, res) => {
 //__________________TABLE CONSULTATION__________________//
 
 // Get all consultations
+
+app.get('/api/patients/consultations/all', async (req, res) => {
+    try {
+        const result = await pool.query(`SELECT id,idpatient,TO_CHAR(date, 'MM-DD-YYYY') AS date, mantant FROM public.consultations`);
+        res.json(result.rows); 
+        // console.log(result.rows)
+    } catch (error) {
+        console.error('Error fetching consultations:', error);
+        res.status(500).json({ error: 'Error fetching consultations' });
+    }
+});
+
+//get mantant total
+app.get('/api/patients/consultations/mantant/:patientId', async (req, res) => {
+    let total = 0; // Utiliser let au lieu de const pour permettre la mise à jour
+    const { patientId } = req.params; // Extraire l'identifiant du patient
+
+    try {
+        const result = await pool.query(
+            `SELECT mantant FROM public.consultations WHERE idpatient = $1;`,
+            [patientId]
+        );
+
+        // Calculer la somme des montants
+        result.rows.forEach((e) => {
+            total += parseInt(e.mantant, 10); // Convertir en entier et ajouter au total
+        });
+
+        // Retourner le total sous forme de réponse JSON
+        res.json({ total });
+    } catch (error) {
+        console.error('Error fetching consultations:', error);
+        res.status(500).json({ error: 'Error fetching consultations' });
+    }
+});
+
 app.get('/api/patients/consultations/:patientId', async (req, res) => {
     const { patientId } = req.params; // Extract the patient ID
     try {
@@ -350,6 +386,92 @@ app.delete('/api/patients/rendezvous/:id', async (req, res) => {
 
 
 //__________________TABLE RENDEZ-VOUS__________________//
+
+//__________________TABLE MANTANTS __________________//
+
+
+// Get mantant
+
+app.get('/api/patients/consultations/mantant/:patientId', async (req, res) => {
+    const { patientId } = req.params; // Extract the patient ID
+    try {
+        const result = await pool.query(`SELECT total,payee FROM public.mantant WHERE idpatient = $1 ;`,[patientId]);
+        res.json(result.rows); 
+    } catch (error) {
+        console.error('Error fetching mantant:', error);
+        res.status(500).json({ error: 'Error fetching mantant' });
+    }
+});
+
+
+// Add a new mantant
+app.post('/api/patients/consultations/mantant', async (req, res) => {
+    const {idpatient,total,payee } = req.body;
+    if (!date || !type  ) {
+        return res.status(400).json({ error: 'missing required fields' });
+    }
+
+    try {
+        const result = await pool.query(
+            'INSERT INTO public.mantant(idpatient,total,payee) VALUES ($1, $2, $3) RETURNING *',
+            [idpatient,total,payee]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error adding mantant:', error);
+        res.status(500).json({ error: 'Error adding mantant' });
+    }
+});
+
+
+//Update mantant
+app.put('/api/patients/consultations/mantant/:id', async (req, res) => {
+    const { idpatient } = req.params;
+    const { payee } = req.body;
+
+    if (!payee) {
+        return res.status(400).json({ error: 'payee required' });
+    }
+
+    try {
+        const result = await pool.query(
+            'UPDATE public.mantant SET  payee = $1 WHERE idpatient = $2 RETURNING *',
+            [payee,idpatient]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: 'mantant not found' });
+        }
+
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error updating mantant:', error);
+        res.status(500).json({ error: 'Error updating mantant' });
+    }
+});
+
+// Delete a mantant from the database
+
+app.delete('/api/patients/consultations/mantant/:idpatient', async (req, res) => {
+    const { idpatient } = req.params;
+
+    try {
+        const result = await pool.query("DELETE FROM mantant WHERE idpatient = $1;", [idpatient]);
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error:'mantant not found' });
+        }
+
+        res.status(204).send(); // No content
+    } catch (error) {
+        console.error('Error deleting mantant:', error);
+        res.status(500).json({ error: 'Error deleting mantant' });
+    }
+});
+
+
+
+//__________________TABLE MANTANTS __________________//
 
 
 // Catch-all for invalid routes

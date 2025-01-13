@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td class="actions">
                         <button class="update-rendezvous update-consultation" data-id="${rendezvouselmnt.id}" data-date="${rendezvouselmnt.date}" data-type="${rendezvouselmnt.type}" >Update</button>
     
-                        <button class="delete-rendezvous delete-consultation" data-id="${rendezvouselmnt.id}"><i class='bx bxs-user-x' ></i></button>
+                        <button class="delete-rendezvous delete-consultation" data-id="${rendezvouselmnt.id}"><i class='bx bxs-trash'></i></button>
                     </td>
                 `;
     

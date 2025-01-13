@@ -755,8 +755,49 @@ body {
 	}
 }
 
+.update {
+    padding: 10px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.update:hover {
+    background-color: #45a049;
+}
+.actions {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	gap: 2px;
+}
+
+/* Delete Button Styling */
+.delete {
+    padding: 3px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #e53935;
+}
+
+.delete i {
+    font-size: 18px;
+    margin-right: 5px;
+}
 .update-consultation {
-    padding: 18px 15px;
+    padding: 10px 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -769,16 +810,10 @@ body {
 .update-consultation:hover {
     background-color: #45a049;
 }
-.actions {
-	display: flex;
-    justify-content: center;
-    align-items: center;
-	gap: 2px;
-}
 
 /* Delete Button Styling */
 .delete-consultation {
-    padding: 10px 18px;
+	padding: 8px 10px;
     background-color: #f44336;
     color: white;
     border: none;
@@ -796,40 +831,11 @@ body {
     font-size: 18px;
     margin-right: 5px;
 }
-.update {
-    padding: 18px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.update:hover {
-    background-color: #45a049;
-}
-
-/* Delete Button Styling */
-.delete {
-    padding: 10px 18px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.delete:hover {
-    background-color: #e53935;
-}
-
-.delete i {
-    font-size: 18px;
-    margin-right: 5px;
+.actions {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	gap: 2px;
 }
 .consplus{
 	display: flex;
