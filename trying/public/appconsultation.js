@@ -4,11 +4,12 @@ let patientId;
 patientTable2.addEventListener('click', (event) => {
     console.log("hey2");
     const row = event.target.closest('.patientEnrg');
+    
     if (row) {
         const patientData = JSON.parse(row.dataset.patient);
 
         // get the clicked patient id ;
-        patientId = patientData.id
+        patientId = patientData.id;
         console.log(patientId);
 
     }
@@ -34,36 +35,38 @@ patientTable2.addEventListener('click', (event) => {
     async function fetchconsultations() {
         console.log("im in dom");
         try {
-            const response = await fetch(`/api/consultations/${patientId}`);
+            const response = await fetch(`/api/patients/consultations/${patientId}`);
             if (!response.ok) throw new Error('Failed to fetch consultations');
     
             const consultations = await response.json();
-            renderpatientTable(consultations);
+            renderConsultationsTable(consultations);
         } catch (error) {
             console.error('Error fetching consultations:', error);
             alert('Error fetching consultations. Please try again later.');
         }
     }
 
-    // Render the patient table
-    function renderpatientTable(consultations) {
+    // Render the consultation table
+    function renderConsultationsTable(consultations) {
+        console.log("rendering patient table");
         consultationTable.innerHTML = ''; // Clear the table before adding new rows
         consultations.forEach(consultation => {
             const row = document.createElement('tr');
             row.className = 'consultationsEnrg';
-            row.dataset.patient = JSON.stringify(consultation); // Store patient data in the dataset
+            row.dataset.consultation = JSON.stringify(consultation); // Store consultation data in the dataset
 
             row.innerHTML = `
                 <td>${consultation.id}</td>
                 <td>${consultation.date}</td>
                 <td>${consultation.mantant}</td>
                 <td class="actions">
-                    <button class="update-consultation" data-id="${consultation.id}" data-date="${consultation.date}" data-mantant="${consultation.mantant}>Update</button>
+                    <button class="update-consultation" data-id="${consultation.id}" data-date="${consultation.date}" data-mantant="${consultation.mantant}" >Update</button>
+
                     <button class="delete-consultation" data-id="${consultation.id}"><i class='bx bxs-user-x' ></i></button>
                 </td>
             `;
 
-            patientTable.appendChild(row);
+            consultationTable.appendChild(row);
         });
 
         attachActionListeners(); // Attach event listeners to new buttons
@@ -72,13 +75,16 @@ patientTable2.addEventListener('click', (event) => {
     // Add a new consultation using the form
     addConsultationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        idpatient = patientId;
+        console.log(idpatient);
         // const idpatient = idpatient;
         const date = document.getElementById('consultation-date').value;
+        console.log(date);
         const mantant = document.getElementById('mantant').value;
+        console.log(mantant);
 
         try {
-            const response = await fetch('/api/consultations', {
+            const response = await fetch('/api/patients/consultations', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ idpatient,date,mantant })
@@ -92,12 +98,12 @@ patientTable2.addEventListener('click', (event) => {
             console.error('Error adding consultation:', error);
             alert('Error adding consultation. Please try again.');
         }
-    });
+    }, { once: true });
 
-    // Delete a patient
+    // Delete a consultation from the database
     async function deleteconsultation(id) {
         try {
-            const response = await fetch(`/api/consultations/${id}`, {
+            const response = await fetch(`/api/patients/consultations/${id}`, {
                  method: 'DELETE' 
                 });
             if (!response.ok) throw new Error('Failed to delete consultation');
@@ -112,8 +118,11 @@ patientTable2.addEventListener('click', (event) => {
     // Update a patient
     async function updateconsultation(id, date,mantant) {
         
+        
         const updateddate = prompt('Changer date:', date);
         const updatedmantant = prompt('Changer mantant:', mantant);
+
+        console.log(`Updating consultation: id=${id}, date=${updateddate}, mantant=${updatedmantant}`);
 
         
 
@@ -123,7 +132,7 @@ patientTable2.addEventListener('click', (event) => {
         }
 
         try {
-            const response = await fetch(`/api/consultations/${id}`, {
+            const response = await fetch(`/api/patients/consultations/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ date: updateddate,mantant: updatedmantant})
@@ -131,7 +140,7 @@ patientTable2.addEventListener('click', (event) => {
 
             if (!response.ok) throw new Error('Failed to update consultation');
 
-            fetchpatients(); // Refresh the patient list
+            fetchconsultations(); // Refresh the consultation list
         } catch (error) {
             console.error('Error updating consultation:', error);
             alert('Error updating consultation. Please try again.');
@@ -154,7 +163,7 @@ patientTable2.addEventListener('click', (event) => {
                 const id = button.getAttribute('data-id');
                 const date = button.getAttribute('data-date');
                 const mantant = button.getAttribute('data-mantant');
-                
+                console.log(mantant, date,id);
                 updateconsultation(id, date,mantant);
             });
         });
@@ -162,5 +171,6 @@ patientTable2.addEventListener('click', (event) => {
 
 
     // Initial load of patient data
+    fetchconsultations();
 });
 });

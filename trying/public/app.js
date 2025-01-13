@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render the patient table
     function renderpatientTable(patients) {
         patientTable.innerHTML = ''; // Clear the table before adding new rows
+        const nbrPatients = document.querySelector('.nbr-patients');
+        nbrPatients.textContent = patients.length;
         patients.forEach(patient => {
             const row = document.createElement('tr');
             row.className = 'patientEnrg';

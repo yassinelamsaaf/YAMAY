@@ -1,5 +1,6 @@
 let clientForm = document.querySelector(".clientInfo");
 let consultationForm = document.querySelector(".consultationInfo");
+let rendezvousForm = document.querySelector(".rendezvousInfo");
 
 
 let patientDetail = document.querySelector(".patient-detail");
@@ -8,9 +9,13 @@ let patientTable = document.getElementById('patient-table');
 let consultationTable = document.getElementById('consultation-table');
 
 let  addBtn = document.querySelector(".bxs-user-plus");
+let addConsultationBtn = document.querySelector(".plus");
+let addrendezvousBtn = document.querySelector(".plus1");
 let closeBtn = document.querySelector(".close1");
 let closeBtn1 = document.querySelector(".close2");
 let closeBtn2 = document.querySelector(".close3");
+let closeBtn3 = document.querySelector(".close4");
+
 
 
 let patientEnrg = document.querySelector(".patientEnrg");
@@ -44,21 +49,21 @@ patientTable.addEventListener('click', (event) => {
     }
 });
 
-consultationTable.addEventListener('click', (event) => {
-    console.log("hey");
-    const row = event.target.closest('.consultationEnrg');
-    if (row) {
-        const consultationData = JSON.parse(row.dataset.consultation);
+// consultationTable.addEventListener('click', (event) => {
+//     console.log("hey");
+//     const row = event.target.closest('.consultationEnrg');
+//     if (row) {
+//         const consultationData = JSON.parse(row.dataset.consultation);
 
-        // Populate the form with patient details
-        document.getElementById('consultation-date').value = consultationData.date;
-        document.getElementById('mantant').value = consultationData.mantant;
+//         // Populate the form with patient details
+//         document.getElementById('consultation-date').value = consultationData.date;
+//         document.getElementById('mantant').value = consultationData.mantant;
 
-        // Show the patient detail popup
+//         // Show the patient detail popup
         
-    }
-    consultationForm.style.visibility = 'visible';
-});
+//     }
+//     consultationForm.style.visibility = 'visible';
+// });
 addBtn.addEventListener("click", () =>{
     clientForm.style.visibility = "visible";
 });
@@ -82,6 +87,19 @@ closeBtn2.addEventListener("click", () => {
     consultationForm.style.visibility = "hidden";
     addConsultationForm.reset();
 
+});
+
+closeBtn3.addEventListener("click", () => {
+    rendezvousForm.style.visibility = "hidden";
+
+});
+
+addConsultationBtn.addEventListener("click", () =>{
+    consultationForm.style.visibility = "visible";
+});
+
+addrendezvousBtn.addEventListener("click", () =>{
+    rendezvousForm.style.visibility = "visible";
 });
 
 submitBtn.addEventListener("click", () => {

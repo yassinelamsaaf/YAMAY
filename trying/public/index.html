@@ -23,13 +23,13 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a href="index.html">
 					<i class='bx bxs-user-account'></i>
-					<span class="text">CLIENTS</span>
+					<span class="text">PATIENTS</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="redezvous.html">
 					<i class='bx bxs-edit'></i>
 					<span class="text">RENDEZ-VOUS</span>
 				</a>
@@ -107,7 +107,7 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="#">Clients</a>
+							<a class="active" href="#">Patients</a>
 						</li>
 					</ul>
 				</div>
@@ -125,8 +125,8 @@
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>2834</h3>
-						<p>Nombre De Clients</p>
+						<h3 class="nbr-patients">2834</h3>
+						<p>Nombre De Patients</p>
 					</span>
 				</li>
 				
@@ -173,7 +173,7 @@
 		<div class="close1 close"><button>X</button></div>
 		<form id="add-patient-form">
 			<div class="tripleform-group">
-				<img src="/trying/public/img/people.png" style="width: 100%;" alt="">
+				<i class='bx bxs-user'></i>
 				<div class="doubleform-group">
 					<div class="form-group">
 						<label for="nom">Nom:</label>
@@ -228,7 +228,7 @@
 	<div class="patient-detail">
 		<div class="close2 close"><button>X</button></div>
 		<div class="patientinfoprincipale">
-			<img src="/trying/public/img/client.svg" alt="">
+			<i class='bx bxs-user'></i>
 			<div>
 				<h3 id="patient-nom">NOM</h3>
 				<p id="patient-prenom">PRENOM</p>
@@ -242,8 +242,9 @@
 		<!-- CONSULTATION -->
 		<div class="table-data">
 			<div class="order">
-				<div class="head">
-					<h3>Consultations :</h3>
+				<div class="head consplus">
+					<h3>Consultations :</h3> 
+					<i class='bx bx-plus-medical plus'></i>
 				</div>
 				<table>
 					<thead>
@@ -251,6 +252,7 @@
 							<th>id</th>
 							<th>Date</th>
 							<th>Mantant</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody id="consultation-table">
@@ -277,8 +279,9 @@
 		<!-- RENDEZ-VOUS -->
 		<div class="table-data">
 			<div class="order">
-				<div class="head">
+				<div class="head consplus">
 					<h3>Rendez-Vous :</h3>
+					<i class='bx bx-plus-medical plus1'></i>
 				</div>
 				<table>
 					<thead>
@@ -286,9 +289,10 @@
 							<th>id</th>
 							<th>Date</th>
 							<th>Type</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody id="rendez-vous-table">
+					<tbody id="rendezvous-table">
 
 						<tr>
                             <td>1</td>
@@ -351,7 +355,7 @@
 	</div>
 
 	<!-- consultation details -->
-<div class="consultationInfo" style="visibility: visible;">
+<div class="consultationInfo">
 	<div class="close3 close"><button>X</button></div>
 	<form id="add-consultation-form">
 		<div class="tripleform-group">
@@ -375,10 +379,40 @@
 </div>
 
 
+    <!-- rendez-vous details -->
+	<div class="rendezvousInfo consultationInfo">
+		<div class="close4 close"><button>X</button></div>
+		<form id="add-rendezvous-form">
+			<div class="tripleform-group">
+                <div class="doubleform-group">
+                    <h3>RENDEZ-VOUS</h3>
+                    <div class="form-group">
+                        <label for="prenom">Date:</label>
+                        <input type="date" id="rendezvous-date" name="rendezvous-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select id="type" name="type" required>
+                            <option value="VIPI">VIPI</option>
+                            <option value="VIPP">VIPP</option>
+							<option value="SIR">SIR</option>
+							<option value="VPR">VPR</option>
+                        </select>
+                    </div>
+					<div class="btn">
+                        <button class="submitBtn" type="submit">Ajouter Rendez-Vous</button>
+                    </div>
+                </div>
+            </div>
+		</form>
+	</div>
+
+
 	<script src="script2.js"></script>
 	<script src="script.js"></script>
 	<script src="app.js"></script>
 	<script src="appconsultation.js"></script>
+	<script src="apprendezvous.js"></script>
 	
 </body>
 </html>

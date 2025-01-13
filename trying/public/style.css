@@ -476,7 +476,7 @@ body {
 }
 .table-data td .bxs-user-x{
 	font-size: 30px;
-	color: red;
+	color: rgb(255, 255, 255);
 }
 
 
@@ -512,6 +512,10 @@ body {
 
 /* MAIN */
 /* CONTENT */
+.delete{
+	border: none;
+
+}
 
 /*POP-UP CLIENT*/
 .clientInfo{
@@ -583,7 +587,7 @@ body {
 	color: red;
   }
 button[type="submit"] {
-    width: 50%;
+    
     padding: 10px 15px;
     font-size: 1.1rem;
     font-weight: bold;
@@ -622,7 +626,7 @@ button[type="submit"] {
 .patient-detail .patientinfoprincipale{
 	font-family: 'Courier New', Courier, monospace;
 	display: flex;
-	justify-content: space-between;
+	justify-content: left;
 	align-items: center;
 	margin-bottom: 10%;
 }
@@ -757,4 +761,102 @@ button[type="submit"] {
 	#content main .table-data .todo .todo-list {
 		min-width: 420px;
 	}
+}
+
+.update {
+    padding: 10px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.update:hover {
+    background-color: #45a049;
+}
+.actions {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	gap: 2px;
+}
+
+/* Delete Button Styling */
+.delete {
+    padding: 3px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #e53935;
+}
+
+.delete i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+.update-consultation {
+    padding: 10px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.update-consultation:hover {
+    background-color: #45a049;
+}
+
+/* Delete Button Styling */
+.delete-consultation {
+	padding: 3px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-consultation:hover {
+    background-color: #e53935;
+}
+
+.delete-consultation i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+.consplus{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.consplus i{
+	cursor: pointer;
+	color: #45a049;
+	
+}
+.bxs-user{
+	font-size: 200px;
+}
+.form-group select {
+    width: 100%;
+    padding: 3%;
+    font-size: 1rem;
+    border: 2px solid var(--light-blue);
+    border-radius: 8px;
+   	transition: border-color 0.3s ease;
 }

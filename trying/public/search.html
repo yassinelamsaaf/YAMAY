@@ -29,7 +29,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="redezvous.html">
 					<i class='bx bxs-edit'></i>
 					<span class="text">RENDEZ-VOUS</span>
 				</a>
@@ -158,7 +158,7 @@
 		<div class="close1 close"><button>X</button></div>
 		<form id="add-patient-form">
 			<div class="tripleform-group">
-				<img src="/trying/public/img/people.png" style="width: 100%;" alt="">
+				<i class='bx bxs-user'></i>
 				<div class="doubleform-group">
 					<div class="form-group">
 						<label for="nom">Nom:</label>
@@ -216,7 +216,7 @@
 	<div class="patient-detail">
 		<div class="close2 close"><button>X</button></div>
 		<div class="patientinfoprincipale">
-			<img src="/trying/public/img/client.svg" alt="">
+			<i class='bx bxs-user'></i>
 			<div>
 				<h3 id="patient-nom">NOM</h3>
 				<p id="patient-prenom">PRENOM</p>
@@ -230,8 +230,9 @@
 		<!-- CONSULTATION -->
 		<div class="table-data">
 			<div class="order">
-				<div class="head">
+				<div class="head consplus">
 					<h3>Consultations :</h3>
+					<i class='bx bx-plus-medical plus'></i>
 				</div>
 				<table>
 					<thead>
@@ -239,24 +240,10 @@
 							<th>id</th>
 							<th>Date</th>
 							<th>Mantant</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody id="consultation-table">
-						<tr>
-                            <td>1</td>
-                            <td>10/10/2020</td>
-                            <td>500</td>
-                        </tr>
-						<tr>
-                            <td>2</td>
-                            <td>11/10/2020</td>
-                            <td>300</td>
-                        </tr>
-						<tr>
-                            <td>3</td>
-                            <td>12/10/2020</td>
-                            <td>700</td>
-                        </tr>
 					</tbody>
 				</table>
 			</div>
@@ -265,8 +252,9 @@
 		<!-- RENDEZ-VOUS -->
 		<div class="table-data">
 			<div class="order">
-				<div class="head">
+				<div class="head consplus">
 					<h3>Rendez-Vous :</h3>
+					<i class='bx bx-plus-medical plus1'></i>
 				</div>
 				<table>
 					<thead>
@@ -274,9 +262,10 @@
 							<th>id</th>
 							<th>Date</th>
 							<th>Type</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody id="rendez-vous-table">
+					<tbody id="rendezvous-table">
 
 						<tr>
                             <td>1</td>
@@ -339,7 +328,7 @@
 	</div>
 <!-- patient details -->
 <!-- consultation details -->
-<div class="consultationInfo" style="visibility: visible;">
+<div class="consultationInfo" >
 	<div class="close3 close"><button>X</button></div>
 	<form id="add-consultation-form">
 		<div class="tripleform-group">
@@ -361,12 +350,41 @@
 		</div>
 	</form>
 </div>
+<!-- rendez-vous details -->
+<div class="rendezvousInfo consultationInfo">
+	<div class="close4 close"><button>X</button></div>
+	<form id="add-rendezvous-form">
+		<div class="tripleform-group">
+			<div class="doubleform-group">
+				<h3>RENDEZ-VOUS</h3>
+				<div class="form-group">
+					<label for="prenom">Date:</label>
+					<input type="date" id="rendezvous-date" name="rendezvous-date" required>
+				</div>
+				<div class="form-group">
+					<label for="type">Type:</label>
+					<select id="type" name="type" required>
+						<option value="VIPI">VIPI</option>
+						<option value="VIPP">VIPP</option>
+						<option value="SIR">SIR</option>
+						<option value="VPR">VPR</option>
+					</select>
+				</div>
+				<div class="btn">
+					<button class="submitBtn" type="submit">Ajouter Rendez-Vous</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
 
 
 	<script src="script.js"></script>
 	<script src="appSearch.js"></script>
 	<script src="script2.js"></script>
 	<script src="appconsultation.js"></script>
+	<script src="apprendezvous.js"></script>
+
 
 </body>
 </html>
