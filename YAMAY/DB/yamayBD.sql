@@ -5,7 +5,7 @@
 -- Dumped from database version 17.2
 -- Dumped by pg_dump version 17.2
 
--- Started on 2025-01-13 23:50:25
+-- Started on 2025-01-14 15:09:32
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -132,7 +132,21 @@ ALTER TABLE public.rendezvous ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 4710 (class 2606 OID 24613)
+-- TOC entry 224 (class 1259 OID 32814)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    username character varying NOT NULL,
+    email character varying NOT NULL,
+    password character varying NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 4714 (class 2606 OID 24613)
 -- Name: patients PATIENT_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -141,7 +155,7 @@ ALTER TABLE ONLY public.patients
 
 
 --
--- TOC entry 4712 (class 2606 OID 32788)
+-- TOC entry 4716 (class 2606 OID 32788)
 -- Name: consultations consultation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -150,7 +164,7 @@ ALTER TABLE ONLY public.consultations
 
 
 --
--- TOC entry 4716 (class 2606 OID 32808)
+-- TOC entry 4720 (class 2606 OID 32808)
 -- Name: mantant mantant_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -159,7 +173,7 @@ ALTER TABLE ONLY public.mantant
 
 
 --
--- TOC entry 4714 (class 2606 OID 32798)
+-- TOC entry 4718 (class 2606 OID 32798)
 -- Name: rendezvous rendezvous_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -167,7 +181,16 @@ ALTER TABLE ONLY public.rendezvous
     ADD CONSTRAINT rendezvous_pkey PRIMARY KEY (id, idpatient);
 
 
--- Completed on 2025-01-13 23:50:26
+--
+-- TOC entry 4722 (class 2606 OID 32820)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (email);
+
+
+-- Completed on 2025-01-14 15:09:32
 
 --
 -- PostgreSQL database dump complete
