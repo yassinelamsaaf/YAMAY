@@ -2,17 +2,23 @@ const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors'); // Optional: For cross-origin resource sharing
 const path = require('path');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+
+require('dotenv').config();
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Database Connection
 const pool = new Pool({
-    user: 'postgres',        // Replace with your PostgreSQL username
-    host: 'localhost',       // Host where PostgreSQL is running
-    database: 'YAMAY', // Replace with your database name
-    password: 'yassine124800', // Replace with your PostgreSQL password
-    port: 5432,              // Default PostgreSQL port
+    user: process.env.DB_USER,        // Replace with your PostgreSQL username
+    host: process.env.DB_HOST,       // Host where PostgreSQL is running
+    database: process.env.DB_NAME, // Replace with your database name
+    password: process.env.DB_PASSWORD, // Replace with your PostgreSQL password
+    port: process.env.DB_PORT,              // Default PostgreSQL port
 });
 
 // Middleware
@@ -472,6 +478,94 @@ app.delete('/api/patients/consultations/mantant/:idpatient', async (req, res) =>
 
 
 //__________________TABLE MANTANTS __________________//
+
+
+
+//___________________TABLE USERS AUTHENTICATION______________________//
+
+app.use(express.json());
+
+// Registration
+app.post("/register", async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+
+        if (!username || !email || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const result = await pool.query(
+            "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
+            [username, email, hashedPassword]
+        );
+
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error("Error during registration:", error.message);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+// Login
+app.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ message: "Email and password are required" });
+        }
+
+        const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
+        const user = result.rows[0];
+        if (!user) {
+            return res.status(400).json({ message: "Invalid credentials" });
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatch) {
+            return res.status(400).json({ message: "Invalid credentials" });
+        }
+        //can be removed 
+        const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: "1h" });
+
+        res.json({ token });
+    } catch (error) {
+        console.error("Error during login:", error.message); // Ensure this logs
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+// Middleware function for token verification
+// function verifyToken(req, res, next) {
+//     const token =
+//         req.headers.authorization && req.headers.authorization.split(" ")[1];
+
+//     if (!token) {
+//         return res.status(401).json({ message: "Missing token" });
+//     }
+
+//     try {
+
+//         const decoded = jwt.verify(token, process.env.SECRET_KEY);
+//         req.user = decoded;
+//         next();
+//     } catch (error) {
+//         console.error("Token verification failed:", error.message);
+//         res.status(401).json({ message: "Invalid token" });
+//     }
+// }
+
+// // Protected route to get user info
+// app.get("/userinfo", verifyToken, (req, res) => {
+//     res.json({ user: req.user });
+// });
+
+//___________________TABLE USERS AUTHENTICATION______________________//
+
+
 
 
 // Catch-all for invalid routes

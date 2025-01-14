@@ -1,0 +1,49 @@
+###
+
+GET http://localhost:3000/api/patients 
+
+###
+
+This will return a list of all patients in the database. Each patient object will include their unique ID, name, age, and address.
+
+###
+POST http://localhost:3000/api/patients
+Content-Type: application/json
+
+{
+  "nom": "John Doe",
+  "age": 30,
+  "address": "123 Main St, Anytown, USA"
+}
+
+###
+
+
+### Register a new user
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "email": "testuser@example.com",
+    "password": "password123"
+}
+
+###
+
+### Login a user
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "testuser@example.com",
+    "password": "password123"
+}
+
+###
+
+### Get user information (requires token)
+GET http://localhost:3000/userinfo
+# Authorization: Bearer {{token}}
+
+###
