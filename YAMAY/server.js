@@ -128,6 +128,13 @@ app.delete('/api/patients/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
+        
+        // Supprimer les consultations associées
+        await pool.query("DELETE FROM consultations WHERE idpatient = $1;", [id]);
+
+        // Supprimer les rendez-vous associés
+        await pool.query("DELETE FROM rendezvous WHERE idpatient = $1;", [id]);
+
         const result = await pool.query("DELETE FROM patients WHERE id = $1;", [id]);
 
         if (result.rowCount === 0) {

@@ -79,7 +79,7 @@ patientTable2.addEventListener('click', (event) => {
             row.innerHTML = `
                 <td>${consultation.id}</td>
                 <td>${consultation.date}</td>
-                <td>${consultation.mantant}</td>
+                <td>${consultation.mantant} DH</td>
                 <td class="actions">
                     <button class="update-consultation" data-id="${consultation.id}" data-date="${consultation.date}" data-mantant="${consultation.mantant}" >Update</button>
 
@@ -216,7 +216,7 @@ patientTable2.addEventListener('click', (event) => {
             row.dataset.consultation = JSON.stringify(total); // Store total data in the dataset
             console.log(total.total);
             row.innerHTML = `
-                <td>${total.total}</td>
+                <td>${total.total} DH </td>
                 <td class="actions">
                     <button class="update-consultation update-mantant" data-total="${total.total}" data-date="${payee}" >Update</button>
 

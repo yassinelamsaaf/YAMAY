@@ -1,49 +1,153 @@
-###
+### Patients CRUD Operations
 
-GET http://localhost:3000/api/patients 
-
-###
-
-This will return a list of all patients in the database. Each patient object will include their unique ID, name, age, and address.
+# Get all patients
+GET http://localhost:3000/api/patients
 
 ###
+
+# Add a new patient
 POST http://localhost:3000/api/patients
 Content-Type: application/json
 
 {
-  "nom": "John Doe",
-  "age": 30,
-  "address": "123 Main St, Anytown, USA"
+  "nom": "John",
+  "prenom": "Doe",
+  "cin": "AB123456",
+  "email": "john.doe@example.com",
+  "ddn": "1990-01-01",
+  "fh": "H",
+  "ntel": "0612345678"
 }
 
 ###
 
+# Update a patient
+PUT http://localhost:3000/api/patients/1
+Content-Type: application/json
 
-### Register a new user
+{
+  "nom": "John",
+  "prenom": "Doe Updated",
+  "cin": "AB123456",
+  "email": "john.doe@example.com",
+  "ddn": "1990-01-01",
+  "fh": "H",
+  "ntel": "0612345679"
+}
+
+###
+
+# Delete a patient
+DELETE http://localhost:3000/api/patients/1
+
+###
+
+# Search for a patient
+GET http://localhost:3000/api/patients/search/John
+
+###
+
+### Consultations CRUD Operations
+
+# Get all consultations
+GET http://localhost:3000/api/patients/consultations/all
+
+###
+
+# Get consultations for a specific patient
+GET http://localhost:3000/api/patients/consultations/1
+
+###
+
+# Add a new consultation
+POST http://localhost:3000/api/patients/consultations
+Content-Type: application/json
+
+{
+  "idpatient": 1,
+  "date": "2025-01-14",
+  "mantant": 500
+}
+
+###
+
+# Update a consultation
+PUT http://localhost:3000/api/patients/consultations/1
+Content-Type: application/json
+
+{
+  "date": "2025-01-15",
+  "mantant": 600
+}
+
+###
+
+# Delete a consultation
+DELETE http://localhost:3000/api/patients/consultations/1
+
+###
+
+### Rendezvous CRUD Operations
+
+# Get all rendezvous
+GET http://localhost:3000/api/patients/rendezvous/all
+
+###
+
+# Get rendezvous for a specific patient
+GET http://localhost:3000/api/patients/rendezvous/1
+
+###
+
+# Add a new rendezvous
+POST http://localhost:3000/api/patients/rendezvous
+Content-Type: application/json
+
+{
+  "idpatient": 1,
+  "date": "2025-01-20",
+  "type": "Consultation"
+}
+
+###
+
+# Update a rendezvous
+PUT http://localhost:3000/api/patients/rendezvous/1
+Content-Type: application/json
+
+{
+  "date": "2025-01-22",
+  "type": "Follow-Up"
+}
+
+###
+
+# Delete a rendezvous
+DELETE http://localhost:3000/api/patients/rendezvous/1
+
+###
+
+### Users Authentication
+
+# Register a new user
 POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "username": "testuser",
-    "email": "testuser@example.com",
-    "password": "password123"
+  "username": "newuser",
+  "email": "newuser@example.com",
+  "password": "password123"
 }
 
 ###
 
-### Login a user
+# Login a user
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "testuser@example.com",
-    "password": "password123"
+  "email": "newuser@example.com",
+  "password": "password123"
 }
-
-###
-
-### Get user information (requires token)
-GET http://localhost:3000/userinfo
-# Authorization: Bearer {{token}}
 
 ###

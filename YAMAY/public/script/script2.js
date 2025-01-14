@@ -72,6 +72,7 @@ addBtn.addEventListener("click", () =>{
 closeBtn.addEventListener("click", () => {
     clientForm.style.visibility = "hidden";
     addPatientForm.reset();
+    location.reload();
 
 });
 
@@ -81,6 +82,7 @@ closeBtn.addEventListener("click", () => {
 
 closeBtn1.addEventListener("click", () => {
     patientDetail.style.visibility = "hidden";
+    location.reload();
 
 });
 
