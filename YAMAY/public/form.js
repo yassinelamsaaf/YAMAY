@@ -63,7 +63,7 @@ const handleRegister = async () => {
         if (response.ok) {
             showAlert('Registration successful! Redirecting to login...');
             setTimeout(() => {
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             }, 2000);
         } else {
             showAlert(data.message || 'An error occurred');
@@ -97,7 +97,7 @@ const handleLogin = async () => {
 
         if (response.ok) {
             sessionStorage.setItem('token', data.token);
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
         } else {
             showAlert(data.message || 'Login failed');
         }
