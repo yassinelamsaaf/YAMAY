@@ -116,8 +116,13 @@ Ensure you have the following installed:
 
 ### Images
 - **Home Page**: Overview of patient data.
+![Screenshot 2025-01-14 180333](https://github.com/user-attachments/assets/206c3a47-5dcc-4be3-9d00-8de0ffe1c93d)  
 - **Add Patient**: Form for adding new patients.
+![Screenshot 2025-01-14 180452](https://github.com/user-attachments/assets/52dc6cc5-3aaa-4406-9d4e-9ceae906237f)
 - **Manage Consultations**: View and edit consultation records.
+![Screenshot 2025-01-14 180624](https://github.com/user-attachments/assets/152205ce-9b63-4747-b256-e74f13e00589)
+![Screenshot 2025-01-14 180714](https://github.com/user-attachments/assets/bbdc2cf2-87ef-44bf-b6a0-24762d7c54b7)
+
 
 ### Video Link
 [Demo Video](#)
