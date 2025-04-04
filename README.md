@@ -59,7 +59,7 @@ Ensure you have the following installed:
    DB_HOST=localhost
    DB_PORT=5432
    DB_USER=postgres
-   DB_PASSWORD=yassine124800
+   DB_PASSWORD=user-password
    DB_NAME=YAMAY
    PORT=3000
    SECRET_KEY=262ggsdsh2436342rygryrwyw
